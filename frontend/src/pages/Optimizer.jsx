@@ -205,6 +205,19 @@ export default function Optimizer() {
                   ))}
                 </div>
               )}
+              {result.comparison && (
+                <div className="mt-6" data-testid="comparison-panel">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#007AFF] mb-3">
+                    COMPARATIVA DE IMPACTO · BEFORE → AFTER
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <ComparisonCell label="CPU" data={result.comparison.cpu_percent} unit="%" testid="comp-cell-cpu" />
+                    <ComparisonCell label="MEMORY" data={result.comparison.memory_percent} unit="%" testid="comp-cell-memory" />
+                    <ComparisonCell label="DISK" data={result.comparison.disk_percent} unit="%" testid="comp-cell-disk" />
+                    <ComparisonCell label="PROCS" data={result.comparison.processes_count} unit="" testid="comp-cell-procs" />
+                  </div>
+                </div>
+              )}
             </section>
           )}
         </>
