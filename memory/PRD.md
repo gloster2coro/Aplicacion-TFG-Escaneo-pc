@@ -34,6 +34,15 @@ Desarrollar **Optidriver**: aplicación profesional para optimizar rendimiento d
 - ✅ Persistencia MongoDB (profiles, optimization_logs, driver_updates, restore_points, ai_sessions, ai_chat_messages)
 - ✅ Testing agent: 100% backend (15/15) + 100% frontend (11/11)
 
+## Implementado (30-Abr-2026 - Iteración 2)
+- ✅ **Packaging .exe**: `launcher.py` (entry point), `build_exe.bat` (PyInstaller single .exe)
+- ✅ **Electron wrapper**: `/app/electron/` con main.js, preload.js, electron-builder config NSIS con requireAdministrator
+- ✅ **Windows Validation Checklist**: `/app/WINDOWS_VALIDATION_CHECKLIST.md` (pruebas paso a paso + troubleshooting)
+- ✅ **Scheduler automático**: página `/scheduler`, reglas CRUD (name, trigger_processes, profile, priority), toggle on/off, polling cada 15s, aplica perfil cuando procesos trigger están corriendo
+- ✅ **Before/After metrics**: panel "COMPARATIVA DE IMPACTO" tras aplicar optimización, 4 métricas (CPU/Memory/Disk/Procs) con before/after/delta/delta_percent, colores verde-mejoró/rojo-empeoró
+- ✅ Nuevos endpoints: /api/scheduler/* (status, toggle, rules CRUD, events), /api/metrics/* (snapshot, latest-comparison)
+- ✅ Testing agent: 100% backend (24/24), 100% frontend tras fix
+
 ## Notas Técnicas
 - En entorno Linux (preview) los datos Windows-específicos son simulados (drivers, GPU, mobo, servicios)
 - En Windows real con admin: funciones operativas reales (psutil procesos, wmi hardware, pnputil drivers, PowerShell Checkpoint-Computer)
