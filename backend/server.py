@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timezone
 
-from optidriver import hardware, optimizer, drivers, restore, ai_assistant, docs
+from optidriver import hardware, optimizer, drivers, restore, ai_assistant, docs, scheduler, metrics_compare
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -49,6 +49,17 @@ class AIChatRequest(BaseModel):
     session_id: Optional[str] = None
     include_hardware: bool = False
 
+class SchedulerRule(BaseModel):
+    name: str
+    trigger_processes: List[str]
+    profile: str
+    priority: int = 0
+    enabled: bool = True
+
+class SchedulerToggle(BaseModel):
+    enabled: bool
+    interval_seconds: Optional[int] = None
+
 # ---------- Root ----------
 @api_router.get("/")
 async def root():
@@ -83,6 +94,9 @@ async def optimize_analyze(req: ProfileSelect):
 
 @api_router.post("/optimize/apply")
 async def optimize_apply(req: OptimizeRequest):
+    # Capture metrics BEFORE
+    before_snapshot = metrics_compare.capture_snapshot("before_optimize")
+
     # Create automatic restore point before applying
     rp = restore.create_restore_point(
         f"Optidriver - Antes de perfil {req.profile}",
@@ -100,12 +114,22 @@ async def optimize_apply(req: OptimizeRequest):
 
     result = optimizer.apply_optimizations(req.profile, simulate=req.simulate)
 
+    # Capture metrics AFTER (small delay for system to settle)
+    import asyncio as _asyncio
+    await _asyncio.sleep(1.5)
+    after_snapshot = metrics_compare.capture_snapshot("after_optimize")
+    comparison = metrics_compare.compute_delta(before_snapshot, after_snapshot)
+
+    log_id = str(uuid.uuid4())
     log_doc = {
-        "id": str(uuid.uuid4()),
+        "id": log_id,
         "profile": req.profile,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "simulated": result["simulated"],
         "processes_affected": result["processes_affected"],
+        "before_snapshot": before_snapshot,
+        "after_snapshot": after_snapshot,
+        "comparison": comparison,
     }
     await db.optimization_logs.insert_one(log_doc.copy())
 
@@ -116,7 +140,7 @@ async def optimize_apply(req: OptimizeRequest):
         upsert=True,
     )
 
-    return {**result, "auto_restore_point": rp_doc}
+    return {**result, "auto_restore_point": rp_doc, "comparison": comparison, "log_id": log_id}
 
 @api_router.get("/optimize/logs")
 async def optimize_logs():
@@ -230,6 +254,60 @@ async def ai_chat(req: AIChatRequest):
 async def ai_sessions():
     items = await db.ai_sessions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(50)
     return {"sessions": items}
+
+# ---------- Scheduler ----------
+@api_router.get("/scheduler/status")
+async def scheduler_status():
+    eng = scheduler.get_engine(db)
+    return eng.status()
+
+@api_router.post("/scheduler/toggle")
+async def scheduler_toggle(req: SchedulerToggle):
+    eng = scheduler.get_engine(db)
+    if req.interval_seconds:
+        eng.interval_seconds = max(5, req.interval_seconds)
+    if req.enabled:
+        await eng.start()
+    else:
+        await eng.stop()
+    return eng.status()
+
+@api_router.get("/scheduler/rules")
+async def scheduler_get_rules():
+    rules = await db.scheduler_rules.find({}, {"_id": 0}).sort("priority", -1).to_list(100)
+    return {"rules": rules}
+
+@api_router.post("/scheduler/rules")
+async def scheduler_create_rule(req: SchedulerRule):
+    doc = req.model_dump()
+    doc["id"] = str(uuid.uuid4())
+    doc["created_at"] = datetime.now(timezone.utc).isoformat()
+    await db.scheduler_rules.insert_one(doc.copy())
+    return {**doc}
+
+@api_router.delete("/scheduler/rules/{rule_id}")
+async def scheduler_delete_rule(rule_id: str):
+    r = await db.scheduler_rules.delete_one({"id": rule_id})
+    return {"deleted": r.deleted_count}
+
+@api_router.get("/scheduler/events")
+async def scheduler_events():
+    events = await db.scheduler_events.find({}, {"_id": 0}).sort("rule_id", -1).to_list(50)
+    return {"events": events}
+
+# ---------- Metrics Comparison ----------
+@api_router.get("/metrics/snapshot")
+async def metrics_snapshot():
+    return metrics_compare.capture_snapshot("manual")
+
+@api_router.get("/metrics/latest-comparison")
+async def metrics_latest_comparison():
+    doc = await db.optimization_logs.find_one(
+        {"comparison": {"$exists": True}},
+        {"_id": 0},
+        sort=[("timestamp", -1)],
+    )
+    return doc or {"comparison": None}
 
 # ---------- Documentation ----------
 @api_router.get("/docs/pdf")

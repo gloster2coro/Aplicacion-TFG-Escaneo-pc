@@ -45,3 +45,18 @@ export const aiChat = (message, sessionId = null, includeHardware = false) =>
 export const getAISessions = () => api.get("/ai/sessions").then(r => r.data);
 
 export const getDocsPdfUrl = () => `${API}/docs/pdf`;
+
+// Scheduler
+export const getSchedulerStatus = () => api.get("/scheduler/status").then(r => r.data);
+export const toggleScheduler = (enabled, intervalSeconds = null) =>
+  api.post("/scheduler/toggle", { enabled, interval_seconds: intervalSeconds }).then(r => r.data);
+export const getSchedulerRules = () => api.get("/scheduler/rules").then(r => r.data);
+export const createSchedulerRule = (rule) =>
+  api.post("/scheduler/rules", rule).then(r => r.data);
+export const deleteSchedulerRule = (ruleId) =>
+  api.delete(`/scheduler/rules/${ruleId}`).then(r => r.data);
+export const getSchedulerEvents = () => api.get("/scheduler/events").then(r => r.data);
+
+// Metrics
+export const getLatestComparison = () => api.get("/metrics/latest-comparison").then(r => r.data);
+export const getMetricsSnapshot = () => api.get("/metrics/snapshot").then(r => r.data);

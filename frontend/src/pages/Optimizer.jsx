@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
-import { Warning, CheckCircle, Stop, Gear } from "@phosphor-icons/react";
+import { Warning, CheckCircle, Stop, Gear, TrendUp, TrendDown } from "@phosphor-icons/react";
 import { analyzeProfile, applyOptimization, getOptimizeLogs } from "../lib/api";
 
 const PROFILES = ["gaming", "oficina", "optimo"];
@@ -234,6 +234,36 @@ function StatBox({ label, value, color, testid }) {
     <div className="border border-zinc-800 p-4" data-testid={testid}>
       <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">{label}</div>
       <div className="font-heading text-2xl font-bold mt-1" style={{ color }}>{value}</div>
+    </div>
+  );
+}
+
+function ComparisonCell({ label, data, unit, testid }) {
+  const improved = data.improved;
+  const color = improved ? "#10B981" : data.delta === 0 ? "#A1A1AA" : "#FF3B30";
+  const Arrow = improved ? TrendDown : TrendUp;
+  return (
+    <div className="border border-zinc-800 p-3" data-testid={testid}>
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">{label}</div>
+        <Arrow size={14} weight="bold" style={{ color }} />
+      </div>
+      <div className="font-mono text-xs space-y-0.5">
+        <div className="flex justify-between">
+          <span className="text-zinc-500">BEFORE</span>
+          <span className="text-zinc-300">{data.before}{unit}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-zinc-500">AFTER</span>
+          <span className="text-zinc-300">{data.after}{unit}</span>
+        </div>
+        <div className="flex justify-between pt-1 border-t border-zinc-900">
+          <span style={{ color }}>DELTA</span>
+          <span style={{ color }}>
+            {data.delta > 0 ? "+" : ""}{data.delta}{unit} ({data.delta_percent > 0 ? "+" : ""}{data.delta_percent}%)
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

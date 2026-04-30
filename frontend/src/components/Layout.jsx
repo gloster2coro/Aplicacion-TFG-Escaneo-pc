@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  Gauge, Cpu, HardDrives, Robot, ShieldCheck, FileText, Lightning
+  Gauge, Cpu, HardDrives, Robot, ShieldCheck, FileText, Lightning, Clock
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { createRestorePoint, getDocsPdfUrl } from "../lib/api";
@@ -11,6 +11,7 @@ const navItems = [
   { to: "/optimize", label: "Optimización", icon: Lightning, testid: "nav-optimize" },
   { to: "/drivers", label: "Drivers", icon: HardDrives, testid: "nav-drivers" },
   { to: "/ai", label: "Asistente IA", icon: Robot, testid: "nav-ai" },
+  { to: "/scheduler", label: "Scheduler", icon: Clock, testid: "nav-scheduler" },
   { to: "/restore", label: "Restauración", icon: ShieldCheck, testid: "nav-restore" },
 ];
 

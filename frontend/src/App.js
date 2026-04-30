@@ -8,6 +8,7 @@ import Optimizer from "./pages/Optimizer";
 import Drivers from "./pages/Drivers";
 import AIAssistant from "./pages/AIAssistant";
 import RestorePoints from "./pages/RestorePoints";
+import Scheduler from "./pages/Scheduler";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/optimize" element={<Optimizer />} />
             <Route path="/drivers" element={<Drivers />} />
             <Route path="/ai" element={<AIAssistant />} />
+            <Route path="/scheduler" element={<Scheduler />} />
             <Route path="/restore" element={<RestorePoints />} />
           </Routes>
         </Layout>

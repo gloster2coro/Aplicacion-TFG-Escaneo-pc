@@ -1,0 +1,54 @@
+{
+  "summary": "Iteration 2 testing of Optidriver new features (Scheduler, Before/After comparison, Windows packaging files). Backend: 24/24 pytest tests pass (including 7 new scheduler tests, 2 new metrics tests, 2 packaging-file existence checks, plus extended optimize/apply assertions for comparison+log_id). Frontend Scheduler page works end-to-end (nav order correct, toggle works, rule create/list/delete works). CRITICAL FRONTEND GAP: the COMPARATIVA DE IMPACTO panel is NOT rendered inside result-panel of /optimize even though the ComparisonCell component is defined in Optimizer.jsx and the backend returns the data.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Optimizer.jsx",
+        "issue": "ComparisonCell component is defined (line 241) but NEVER rendered. The 'COMPARATIVA DE IMPACTO · BEFORE → AFTER' panel is missing from result-panel. After clicking 'EJECUTAR AHORA' the result-panel only shows 'PROCESOS AFECTADOS / COMANDOS SISTEMA' but no 4 comparison cells (CPU/MEMORY/DISK/PROCS). API returns 'comparison' field correctly (verified), but JSX block to render it was not added.",
+        "selector": "[data-testid='result-panel']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Optimization apply → Before/After comparison",
+        "issue": "Backend POST /api/optimize/apply returns full 'comparison' payload (4 metrics × {before,after,delta,delta_percent,improved}) and 'log_id', but frontend Optimizer.jsx never reads result.comparison nor renders ComparisonCell. End-user cannot see the BEFORE/AFTER impact.",
+        "affected_selectors": ["[data-testid='result-panel']", "[data-testid^='comp-cell-']"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Add the COMPARATIVA DE IMPACTO panel to /app/frontend/src/pages/Optimizer.jsx inside result-panel (right after the system_commands block, before </section>). It should render: a heading 'COMPARATIVA DE IMPACTO · BEFORE → AFTER' and a grid with 4 ComparisonCell components for cpu_percent, memory_percent, disk_percent and processes_count when result?.comparison exists. Use data-testid like 'comp-cell-cpu', 'comp-cell-memory', 'comp-cell-disk', 'comp-cell-procs' so it's testable.",
+    "After fix, retest by clicking EJECUTAR AHORA on /optimize and verifying 4 cells render with BEFORE/AFTER/DELTA values and improved/regressed colors."
+  ],
+  "critical_code_review_comments": [
+    "Optimizer.jsx defines ComparisonCell helper (line 241-269) but the JSX block referencing it was forgotten in the result-panel render (line 180-209). Likely lost during refactor — the imports TrendUp/TrendDown are present, so wiring is partial.",
+    "scheduler.py SchedulerEngine: _engine is a module-level singleton — fine for single-process FastAPI, but be aware uvicorn workers >1 will have N independent engines. Document or add a Mongo lock.",
+    "scheduler.py inserts events with custom _id = rule_id + str(loop_time). Mixing custom string _id with normal find queries is OK but be careful to keep `_id` excluded from API responses. /api/scheduler/events already excludes _id ({_id: 0}) — verified.",
+    "metrics_compare.compute_delta uses round(...,2) and divides by zero only when before == 0 (handled: returns 0%) — solid.",
+    "Frontend Scheduler.jsx UX: 'INICIAR' button toggles to 'DETENER' correctly, status bar reflects ACTIVO state and toast shows. Polling loop NOT implemented (status only refreshes on user action) — minor; consider a 5s setInterval for live status.",
+    "Layout.jsx nav now has 6 items — order Dashboard → Optimización → Drivers → Asistente IA → Scheduler → Restauración matches spec."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {
+    "backend": "100% (24/24, AI tests deselected since validated in iter1 and slow)",
+    "frontend": "83% (5/6 - Scheduler page fully works; Optimizer COMPARATIVA panel missing)"
+  },
+  "test_credentials": "N/A - app has no auth",
+  "seed_data_creation": "Scheduler tests created TEST_rule_python (priority 10) and TEST_low_priority (priority 1), both deleted by tests. UI test created TEST_UI_rule and deleted via trash icon. /api/optimize/apply created additional optimization_logs (gaming profile, simulated) which now contain the 'comparison' field — verified persisted via /api/metrics/latest-comparison.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite at /app/backend/tests/backend_test.py — run with: pytest /app/backend/tests/backend_test.py -v --junitxml=/app/test_reports/pytest/pytest_results.xml. Use -k 'not TestAI' to skip the slow GPT-5.2 AI tests (already validated). Scheduler endpoints fully covered (status/toggle/rules CRUD/events). Optimizer apply asserts the new 'comparison' and 'log_id' fields. Frontend Scheduler page testids: page-scheduler, scheduler-status, btn-toggle-scheduler, rule-name-input, rule-triggers-input, rule-profile-{gaming|oficina|optimo}, rule-priority-input, btn-create-rule, btn-delete-rule-{id}, scheduler-events. Optimizer fix should add ComparisonCell usages with testids comp-cell-cpu, comp-cell-memory, comp-cell-disk, comp-cell-procs.",
+  "rca of the issue": "Bug: Missing JSX render block for ComparisonCell in Optimizer.jsx. Reproduction: navigate to /optimize → click EJECUTAR AHORA → wait for result-panel → search for text 'COMPARATIVA' or any [data-testid^='comp-cell-'] element → none found. Root cause: helper component ComparisonCell defined at end of file but never invoked in JSX (verified via `grep -n 'ComparisonCell' /app/frontend/src/pages/Optimizer.jsx` returns only the function definition line). Mitigation: insert a new <div> block inside result-panel that renders 4 ComparisonCell instances bound to result.comparison.cpu_percent / memory_percent / disk_percent / processes_count when result?.comparison exists, with appropriate units ('%','%','%','') and stable testids."
+}
