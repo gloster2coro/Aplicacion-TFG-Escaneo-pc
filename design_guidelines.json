@@ -1,0 +1,119 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 2: The Performance Pro",
+  "emotional_tone": "Tactical, precise, high-performance, command-center",
+  "colors": {
+    "background": {
+      "base": "#0A0A0A",
+      "surface": "#121212",
+      "surface_elevated": "#1A1A1A"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A",
+      "inverse": "#000000"
+    },
+    "accents": {
+      "primary": "#007AFF",
+      "primary_glow": "rgba(0, 122, 255, 0.5)",
+      "gaming": "#FF3B30",
+      "gaming_glow": "rgba(255, 59, 48, 0.5)",
+      "office": "#F4F4F5",
+      "success": "#10B981",
+      "warning": "#F59E0B"
+    },
+    "borders": {
+      "default": "#27272A",
+      "focus": "#007AFF",
+      "tactical": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Barlow Condensed, sans-serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "mono": "IBM Plex Mono, monospace"
+    },
+    "scales": {
+      "h1": "text-5xl sm:text-6xl font-black uppercase tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl font-bold uppercase tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl font-bold uppercase tracking-tight",
+      "h4": "text-lg font-semibold uppercase tracking-wider",
+      "body": "text-base font-normal tracking-wide leading-relaxed",
+      "small": "text-sm font-medium tracking-wider",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em]"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "High density for data (Control Room Grid), generous spacing for profile selection. Aggressive asymmetry.",
+    "grid_modes": {
+      "main_dashboard": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 or gap-6. Every pixel utilized. h-full on children.",
+      "hero_profiles": "grid-cols-1 md:grid-cols-3 gap-8. Large immersive cards."
+    },
+    "containers": "Sharp edges, border-collapse style layouts. Paddings must be generous inside bordered containers (p-6 or p-8)."
+  },
+  "surfaces_and_micro_themes": {
+    "default_card": "bg-[#121212] border border-zinc-800 rounded-none shadow-none",
+    "interactive_card": "bg-[#121212] border border-zinc-800 rounded-none hover:border-[#007AFF] hover:bg-[#1A1A1A] transition-colors duration-200",
+    "glass_panel": "bg-black/60 backdrop-blur-xl border border-white/10 rounded-none",
+    "tactical_button": "bg-transparent border border-[#007AFF] text-[#007AFF] hover:bg-[#007AFF] hover:text-white uppercase tracking-widest font-bold rounded-none px-6 py-3 transition-all",
+    "primary_button": "bg-[#007AFF] text-white border border-[#007AFF] hover:bg-[#005bb5] uppercase tracking-widest font-bold rounded-none px-6 py-3 transition-all"
+  },
+  "components": {
+    "navigation": "Sticky top glass panel (bg-black/80 backdrop-blur-md border-b border-zinc-800). Must include Logo, Profile status, and System Restore CTA.",
+    "shadcn_overrides": {
+      "card": "Remove all rounded corners (rounded-none). Use stark borders.",
+      "button": "Remove all rounded corners. Add uppercase and tracking-widest to text.",
+      "progress": "Remove rounded corners. Background zinc-900, indicator uses accent colors (Volt Blue or Electric Blaze).",
+      "table": "Sharp borders. border-b border-zinc-800. Header text uses overline typography.",
+      "tabs": "Border-bottom style instead of pill style. Active tab has 2px solid bottom border in primary color."
+    },
+    "icons": "Use @phosphor-icons/react. Preferred weight: regular or bold for tactical feel."
+  },
+  "animations": {
+    "hover": "Instant color swaps, subtle 1px border highlights.",
+    "transitions": "transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;",
+    "loading": "Terminal-style blinking cursor or sharp indeterminate progress bar.",
+    "focus": "focus:ring-2 focus:ring-[#007AFF] focus:outline-none focus:ring-offset-2 focus:ring-offset-black"
+  },
+  "pages_and_modules": {
+    "dashboard_home": {
+      "layout": "Grid Mode A for Profile Selection, followed by Grid Mode B for System Monitoring.",
+      "profile_cards": "3 large cards. Gaming (Red accent hover), Office (White accent hover), Optimal (Blue accent hover).",
+      "system_metrics": "Tactical gauges or sharp progress bars for CPU, RAM, Disk. Real-time updates."
+    },
+    "driver_management": {
+      "layout": "2-column split. Left: Hardware HUD. Right: Data table.",
+      "hardware_hud": "Absolute positioned text labels over the motherboard image, simulating a high-tech scan.",
+      "driver_table": "Dense data table. Checkboxes for batch updates. Sticky bottom bar for 'Update Selected' action with warning modal."
+    },
+    "ai_assistant": {
+      "layout": "Terminal/Console style window.",
+      "styling": "Monospace font for AI text. Typewriter effect for incoming recommendations. Deep black background with green or blue text accents for 'Apto' (Compatible) or 'No Apto' (Not Compatible)."
+    }
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1694466464626-7bd06595cf2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwyfHxtb3RoZXJib2FyZCUyMHBjJTIwaGFyZHdhcmV8ZW58MHx8fHwxNzc3NTc2NDEyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "High-tech close up of a computer motherboard.",
+        "category": "hardware_representative_image",
+        "usage": "Use as the background for the Hardware Detection visual validation in the Driver Management module. Apply a heavy dark overlay (bg-black/60) so HUD text is readable on top."
+      }
+    ]
+  },
+  "testing_attributes": {
+    "rule": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case."
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the Dark Theme and Archetype 2 (Performance Pro) guidelines. No soft/rounded UI.",
+    "Ensure all fonts (Barlow Condensed, IBM Plex Sans, IBM Plex Mono) are imported in the global CSS or index.html.",
+    "Do NOT use pure #000000 for backgrounds unless specified; use the designated #0A0A0A base.",
+    "Implement the System Restore Point creation as a highly visible, tactical button (e.g., top right header).",
+    "Use Phosphor icons (@phosphor-icons/react) for all iconography.",
+    "For the Driver Management section, use the provided Unsplash image as the hardware visual, overlaid with analytical data points.",
+    "Customize Shadcn components heavily to remove rounded corners and apply the tactical borders.",
+    "Ensure the AI Assistant uses the mono font and terminal aesthetic."
+  ]
+}
