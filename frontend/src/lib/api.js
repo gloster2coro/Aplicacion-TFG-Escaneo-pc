@@ -1,10 +1,64 @@
-aW1wb3J0IGF4aW9zIGZyb20gImF4aW9zIjsKCmNvbnN0IEJBQ0tFTkRfVVJMID0gImh0dHA6Ly9sb2NhbGhvc3Q6ODAwMSI7CmV4cG9ydCBjb25zdCBBUEkgPSBgJHtCQUNLRU5EX1VSTH0vYXBpYDsKCmV4cG9ydCBjb25zdCBhcGkgPSBheGlvcy5jcmVhdGUoewogIGJhc2VVUkw6IEFQSSwKICBoZWFkZXJzOiB7ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiIgfSwKICB0aW1lb3V0OiA2MDAwMCwKfSk7CgovLyBIYXJkd2FyZQpleHBvcnQgY29uc3QgZ2V0SGFyZHdhcmVGdWxsID0gKCkgPT4gYXBpLmdldCgiL2hhcmR3YXJlL2Z1bGwiKS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGdldEhhcmR3YXJlTWV0cmljcyA9ICgpID0+IGFwaS5nZXQoIi9oYXJkd2FyZS9tZXRyaWNzIikudGhlbihyID0+IHIuZGF0YSk7CgovLyBTeXN0ZW0KZXhwb3J0IGNvbnN0IGdldFByb2Nlc3NlcyA9ICgpID0+IGFwaS5nZXQoIi9zeXN0ZW0vcHJvY2Vzc2VzIikudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCBnZXRTZXJ2aWNlcyA9ICgpID0+IGFwaS5nZXQoIi9zeXN0ZW0vc2VydmljZXMiKS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGdldFN0YXJ0dXAgPSAoKSA9PiBhcGkuZ2V0KCIvc3lzdGVtL3N0YXJ0dXAiKS50aGVuKHIgPT4gci5kYXRhKTsKCi8vIE9wdGltaXplCmV4cG9ydCBjb25zdCBhbmFseXplUHJvZmlsZSA9IChwcm9maWxlKSA9PgogIGFwaS5wb3N0KCIvb3B0aW1pemUvYW5hbHl6ZSIsIHsgcHJvZmlsZSB9KS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGFwcGx5T3B0aW1pemF0aW9uID0gKHByb2ZpbGUsIHNpbXVsYXRlID0gdHJ1ZSkgPT4KICBhcGkucG9zdCgiL29wdGltaXplL2FwcGx5IiwgeyBwcm9maWxlLCBzaW11bGF0ZSB9KS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGdldE9wdGltaXplTG9ncyA9ICgpID0+IGFwaS5nZXQoIi9vcHRpbWl6ZS9sb2dzIikudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCBnZXRDdXJyZW50UHJvZmlsZSA9ICgpID0+IGFwaS5nZXQoIi9vcHRpbWl6ZS9jdXJyZW50LXByb2ZpbGUiKS50aGVuKHIgPT4gci5kYXRhKTsKCi8vIERyaXZlcnMKZXhwb3J0IGNvbnN0IGdldERyaXZlcnMgPSAoKSA9PiBhcGkuZ2V0KCIvZHJpdmVycyIpLnRoZW4ocm8gPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGdldE91dGRhdGVkRHJpdmVycyA9ICgpID0+IGFwaS5nZXQoIi9kcml2ZXJzL291dGRhdGVkIikudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCB1cGRhdGVEcml2ZXJzID0gKGRyaXZlck5hbWVzLCBzaW11bGF0ZSA9IHRydWUpID0+CiAgYXBpLnBvc3QoIi9kcml2ZXJzL3VwZGF0ZSIsIHsgZHJpdriverX25hbWVzOiBkcml2ZXJOYW1lcywgc2ltdWxhdGUgfSkudGhlbihyID0+IHIuZGF0YSk7CgovLyBSZXN0b3JlCmV4cG9ydCBjb25zdCBjcmVhdGVSZXN0b3JlUG9pbnQgPSAoZGVzY3JpcHRpb24sIHBvaW50VHlwZSA9ICJNT0RJRllfU0VUVElOR1MiKSA9PgogIGFwaS5wb3N0KCIvcmVzdG9yZS9jcmVhdGUiLCB7IGRlc2NyaXB0aW9uLCBwb2ludF90eXBlOiBwb2ludFR5cGUgfSkudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCBnZXRSZXN0b3JlSGlzdG9yeSA9ICgpID0+IGFwaS5nZXQoIi9yZXN0b3JlL2hpc3RvcnkiKS50aGVuKHIgPT4gci5kYXRhKTsKCi8vIEFJCmV4cG9ydCBjb25zdCBhaUFuYWx5emUgPSAocHJvZmlsZSwgYnVkZ2V0ID0gIm1lZGlvIiwgc2Vzc2lvbklkID0gbnVsbCkgPT4KICBhcGkucG9zdCgiL2FpL2FuYWx5emUiLCB7IHByb2ZpbGUsIGJ1ZGdldCwgc2Vzc2lvbl9pZDogc2Vzc2lvbklkIH0pLnRoZW4ociA9PiByLmRhdGEpOwpleHBvcnQgY29uc3QgYWlDaGF0ID0gKG1lc3NhZ2UsIHNlc3Npb25JZCA9IG51bGwsIGluY2x1ZGVIYXJkd2FyZSA9IGZhbHNlKSA9PgogIGFwaS5wb3N0KCIvYWkvY2hhdCIsIHsgbWVzc2FnZSwgc2Vzc2lvbl9pZDogc2Vzc2lvbklkLCBpbmNsdWRlX2hhcmR3YXJlOiBpbmNsdWRlSGFyZHdhcmUgfSkudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCBnZXRBSVNlc3Npb25zID0gKCkgPT4gYXBpLmdldCgiL2FpL3Nlc3Npb25zIikudGhlbihyID0+IHIuZGF0YSk7CgpleHBvcnQgY29uc3QgZ2V0RG9jc1BkZlVybCA9ICgpID0+IGAke0FQSX0vZG9jcy9wZGZgOwoKLy8gU2NoZWR1bGVyCmV4cG9ydCBjb25zdCBnZXRTY2hlZHVsZXJTdGF0dXMgPSAoKSA9PiBhcGkuZ2V0KCIvc2NoZWR1bGVyL3N0YXR1cyIpLnRoZW4ociA9PiByLmRhdGEpOwpleHBvcnQgY29uc3QgdG9nZ2xlU2NoZWR1bGVyID0gKGVuYWJsZWQsIGludGVydmFsU2Vjb25kcyA9IG51bGwpID0+CiAgYXBpLnBvc3QoIi9zY2hlZHVsZXIvdG9nZ2xlIiwgeyBlbmFibGVkLCBpbnRlcnZhbF9zZWNvbmRzOiBpbnRlcnZhbFNlY29uZHMgfSkudGhlbihyID0+IHIuZGF0YSk7CmV4cG9ydCBjb25zdCBnZXRTY2hlZHVsZXJSdWxlcyA9ICgpID0+IGFwaS5nZXQoIi9zY2hlZHVsZXIvcnVsZXMiKS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGNyZWF0ZVNjaGVkdWxlclJ1bGUgPSAocnVsZSkgPT4KICBhcGkucG9z dCgiL3NjaGVkdWxlci9ydWxlcyIsIHJ1bGUpLnRoZW4ociA9PiByLmRhdGEp
-OwpleHBvcnQgY29uc3QgZGVsZXRlU2NoZWR1bGVyUnVsZSA9IChydWxlSWQp
-ID0+CiAgYXBpLmRlbGV0ZShgL3NjaGVkdWxlci9ydWxlcy8ke3J1bGVJZH1g
-KS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0IGNvbnN0IGdldFNjaGVkdWxl
-ckV2ZW50cyA9ICgpID0+IGFwaS5nZXQoIi9zY2hlZHVsZXIvZXZlbnRzIiku
-dGhlbihyID0+IHIuZGF0YSk7CgovLyBNZXRyaWNzCmV4cG9ydCBjb25zdCBn
-ZXRMYXRlc3RDb21wYXJpc29uID0gKCkgPT4gYXBpLmdldCgiL21ldHJpY3Mv
-bGF0ZXN0LWNvbXBhcmlzb24iKS50aGVuKHIgPT4gci5kYXRhKTsKZXhwb3J0
-IGNvbnN0IGdldE1ldHJpY3NTbmFwc2hvdCA9ICgpID0+IGFwaS5nZXQoIi9t
-ZXRyaWNzL3NuYXBzaG90IikudGhlbihyID0+IHIuZGF0YSk7Cg==
+import axios from "axios";
+
+import { toast } from "sonner";
+
+const BACKEND_URL = "http://localhost:8001";
+export const API = `${BACKEND_URL}/api`;
+
+export const api = axios.create({
+  baseURL: API,
+  headers: { "Content-Type": "application/json" },
+  timeout: 60000,
+});
+
+// Hardware
+export const getHardwareFull = () => api.get("/hardware/full").then(r =>r.data);
+export const getHardwareMetrics = () => api.get("/hardware/metrics").then(r => r.data);
+
+// System
+export const getProcesses = () => api.get("/system/processes").then(r => r.data);
+export const getServices = () => api.get("/system/services").then(r =>r.data);
+export const getStartup = () => api.get("/system/startup").then(r =>r.data);
+
+// Optimize
+export const analyzeProfile = (profile) =>
+  api.post("/optimize/analyze", { profile }).then(r =>r.data);
+export const applyOptimization = (profile, simulate = true) =>
+  api.post("/optimize/apply", { profile, simulate }).then(r =>r.data);
+export const getOptimizeLogs = () => api.get("/optimize/logs").then(r => r.data);
+export const getCurrentProfile = () => api.get("/optimize/current-profile").then(r =>r.data);
+
+// Drivers
+export const getDrivers = () => api.get("/drivers").then(r => r.data);
+export const getOutdatedDrivers = () => api.get("/drivers/outdated").then(r =>r.data);
+export const updateDrivers = (driverNames, simulate = true) =>
+  api.post("/drivers/update", { driver_names: driverNames, simulate }).then(r =>r.data);
+
+// Restore
+export const createRestorePoint = (description, pointType = "MODIFY_SETTINGS") =>
+  api.post("/restore/create", { description, point_type: pointType }).then(r =>r.data);
+export const getRestoreHistory = () => api.get("/restore/history").then(r => r.data);
+
+// AI
+export const aiAnalyze = (profile, budget = "medio", sessionId = null) =>
+  api.post("/ai/analyze", { profile, budget, session_id: sessionId }).then(r => r.data);
+export const aiChat = (message, sessionId = null, includeHardware = false) =>
+  api.post("/ai/chat", { message, session_id: sessionId, include_hardware: includeHardware }).then(r =>r.data);
+export const getAISessions = () => api.get("/ai/sessions").then(r =>r.data);
+
+export const getDocsPdfUrl = () => `${API}/docs/pdf`;
+
+// Scheduler
+export const getSchedulerStatus = () => api.get("/scheduler/status").then(r => r.data);
+export const toggleScheduler = (enabled, intervalSeconds = null) =>
+  api.post("/scheduler/toggle", { enabled, interval_seconds: intervalSeconds }).then(r =>r.data);
+export const getSchedulerRules = () => api.get("/scheduler/rules").then(r => r.data);
+export const createSchedulerRule = (rule) =>
+  api.post("/scheduler/rules", rule).then(r => r.data);
+export const deleteSchedulerRule = (ruleId) =>
+  api.delete(`/scheduler/rules/${ruleId}`).then(r => r.data);
+export const getSchedulerEvents = () => api.get("/scheduler/events").then(r =>r.data);
+
+// Metrics
+export const getLatestComparison = () => api.get("/metrics/latest-comparison").then(r => r.data);
+export const getMetricsSnapshot = () => api.get("/metrics/snapshot").then(r =>r.data);
