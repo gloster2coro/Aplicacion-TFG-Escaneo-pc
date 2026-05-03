@@ -1,7 +1,7 @@
 import os
 import uuid
 import json
-from typang import Dict, Any, Optional
+from typing import Dict, Any, Optional
 from openai import AsyncOpenAI
 
 SYSTEM_PROMPT = """Eres OPTIMIGER AI, un asistente experto en hardware y optimización de PCs.
