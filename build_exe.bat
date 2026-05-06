@@ -1,78 +1,62 @@
 @echo off
-REM =========================================
-REM Optidriver - PyInstaller .exe build
-REM Se ejecuta siempre desde su propia carpeta
-REM =========================================
-
+setlocal EnableDelayedExpansion
 pushd "%~dp0"
-echo ============================================
-echo   OPTIDRIVER - Build .exe
-echo   Carpeta: %CD%
-echo ============================================
 
-REM Verificar que estamos en la carpeta correcta
+echo ===============================================
+echo   OPTIDRIVER - Build .exe (PyInstaller)
+echo   Carpeta proyecto: %CD%
+echo ===============================================
+echo.
+
 if not exist "launcher.py" (
     echo [ERROR] No se encuentra launcher.py
-    echo         Este .bat debe estar en la carpeta raiz del proyecto
-    echo         junto a launcher.py, backend\ y frontend\
-    pause
-    popd
-    exit /b 1
+    echo         Ejecuta este .bat desde la carpeta raiz del proyecto
+    pause & popd & exit /b 1
 )
 
-echo.
-echo [1/4] Verificando Python y pip...
+echo [1/4] Verificando Python...
 python --version
-if %errorLevel% neq 0 (
-    echo [ERROR] Python no esta instalado o no esta en el PATH
-    echo         Descarga Python 3.11 o 3.12 desde https://www.python.org/downloads/
-    echo         IMPORTANTE: marca "Add Python to PATH" durante la instalacion
-    pause
-    popd
-    exit /b 1
+if errorlevel 1 (
+    echo [ERROR] Python no esta en PATH. Instala Python 3.12 con "Add to PATH"
+    pause & popd & exit /b 1
 )
+echo.
 
-REM Usar python -m pip en lugar de pip.exe directamente (evita el error del launcher)
+echo [2/4] Instalando dependencias Python...
 python -m pip install --upgrade pip
+if errorlevel 1 (
+    echo [ERROR] No se pudo actualizar pip
+    pause & popd & exit /b 1
+)
 python -m pip install pyinstaller
-if %errorLevel% neq 0 (
-    echo [ERROR] No se pudo instalar PyInstaller.
-    echo         Intenta con: python -m pip install --user pyinstaller
-    pause
-    popd
-    exit /b 1
-)
-
-echo.
-echo [2/4] Instalando dependencias backend...
 python -m pip install -r backend\requirements.txt
-python -m pip install wmi pywin32 emergentintegrations --extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/
-
+python -m pip install wmi pywin32 2>nul
 echo.
+
 echo [3/4] Construyendo frontend (production build)...
-if not exist "frontend\node_modules" (
-    echo [INFO] node_modules no existe, ejecutando yarn install...
-    pushd frontend
-    call yarn install
-    popd
-)
 pushd frontend
+if not exist "node_modules" (
+    echo    Instalando node_modules (primera vez)...
+    call yarn install
+    if errorlevel 1 (
+        echo [ERROR] yarn install fallo
+        popd & popd & pause & exit /b 1
+    )
+)
 call yarn build
-if %errorLevel% neq 0 (
-    echo [ERROR] Fallo el build del frontend
-    popd
-    popd
-    pause
-    exit /b 1
+if errorlevel 1 (
+    echo [ERROR] yarn build fallo. Revisa errores de compilacion arriba.
+    popd & popd & pause & exit /b 1
 )
 popd
-
 echo.
+
 echo [4/4] Empaquetando con PyInstaller...
 python -m PyInstaller ^
     --name "Optidriver" ^
     --onefile ^
     --noconfirm ^
+    --clean ^
     --add-data "backend;backend" ^
     --add-data "frontend\build;frontend\build" ^
     --hidden-import=uvicorn ^
@@ -92,25 +76,25 @@ python -m PyInstaller ^
     --hidden-import=emergentintegrations ^
     --hidden-import=motor ^
     --hidden-import=psutil ^
+    --hidden-import=reportlab ^
     launcher.py
 
-if %errorLevel% neq 0 (
+if errorlevel 1 (
     echo.
-    echo [ERROR] PyInstaller fallo. Revisa los mensajes de arriba.
-    pause
-    popd
-    exit /b 1
+    echo [ERROR] PyInstaller fallo. Revisa mensajes arriba.
+    pause & popd & exit /b 1
 )
 
 echo.
-echo ============================================
+echo ===============================================
 echo   BUILD COMPLETADO
 echo   Ejecutable: %CD%\dist\Optidriver.exe
-echo ============================================
+echo ===============================================
 echo.
 echo IMPORTANTE:
 echo   - MongoDB debe estar corriendo en localhost:27017
-echo   - Ejecuta Optidriver.exe como administrador para funciones reales
+echo   - Clic derecho -^> "Ejecutar como administrador" para modo real
 echo.
 pause
 popd
+endlocal
