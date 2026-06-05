@@ -23,7 +23,6 @@ if %errorLevel% == 0 (
 ) else (
     echo [AVISO] Sin permisos de admin - funcionara en modo SIMULACION
     echo         Clic derecho al .bat -^> "Ejecutar como administrador" para modo real
-    echo.
 )
 
 REM Python
