@@ -10,7 +10,7 @@ const PROFILES = [
   {
     profile: "gaming",
     title: "Gaming",
-    subtitle: "Max Performance",
+    subtitle: "Máximo Rendimiento",
     description: "Cierra procesos no esenciales, desactiva efectos visuales y activa el plan de alto rendimiento. Ideal para exprimir cada FPS.",
     icon: GameController,
     color: "#FF3B30",
@@ -18,7 +18,7 @@ const PROFILES = [
   {
     profile: "oficina",
     title: "Oficina",
-    subtitle: "Balanced Productivity",
+    subtitle: "Productividad Equilibrada",
     description: "Rendimiento equilibrado con efectos visuales activos. Optimiza sin sacrificar la experiencia de usuario en tareas de ofimática.",
     icon: Briefcase,
     color: "#F4F4F5",
@@ -26,7 +26,7 @@ const PROFILES = [
   {
     profile: "optimo",
     title: "Óptimo",
-    subtitle: "Auto Balance",
+    subtitle: "Balance Automático",
     description: "Balance general automático. Optimización moderada recomendada para uso diario sin configuración manual.",
     icon: Lightning,
     color: "#007AFF",
@@ -86,11 +86,11 @@ export default function Dashboard() {
       {/* Hero */}
       <div className="mb-12" data-testid="dashboard-hero">
         <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#007AFF] mb-3">
-          // SYSTEM CONTROL
+          // CONTROL DEL SISTEMA
         </div>
         <h1 className="font-heading text-5xl sm:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
-          Command<br />
-          <span className="text-[#007AFF]">Your Machine</span>
+          Controla<br />
+          <span className="text-[#007AFF]">Tu Equipo</span>
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base leading-relaxed">
           Selecciona un perfil de optimización, escanea tus drivers, y consulta al asistente IA
@@ -111,7 +111,7 @@ export default function Dashboard() {
             SELECCIONA TU PERFIL
           </h2>
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            3 PROFILES AVAILABLE
+            3 PERFILES DISPONIBLES
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -128,8 +128,8 @@ export default function Dashboard() {
         <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
           <div className="text-xs text-zinc-500 font-mono">
             {selected
-              ? `> PROFILE_SELECTED: ${selected.toUpperCase()} // PRESS APPLY TO EXECUTE`
-              : "> SELECT_A_PROFILE_TO_CONTINUE..."
+              ? `> PERFIL_SELECCIONADO: ${selected.toUpperCase()} // PULSA APLICAR PARA EJECUTAR`
+              : "> SELECCIONA_UN_PERFIL_PARA_CONTINUAR..."
             }
           </div>
           <button
@@ -151,12 +151,12 @@ export default function Dashboard() {
           </h2>
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
             <span className="w-2 h-2 bg-[#10B981] rounded-full pulse-slow"></span>
-            LIVE · 2s REFRESH
+            EN VIVO · ACTUALIZA 2s
           </div>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
-            label="CPU USAGE"
+            label="USO CPU"
             value={metrics ? metrics.cpu_percent.toFixed(1) : "--"}
             unit="%"
             percent={metrics?.cpu_percent}
@@ -165,7 +165,7 @@ export default function Dashboard() {
             testid="metric-cpu"
           />
           <MetricCard
-            label="MEMORY"
+            label="MEMORIA"
             value={metrics ? metrics.memory_used_gb.toFixed(1) : "--"}
             unit={`/ ${metrics?.memory_total_gb?.toFixed(0) || "--"} GB`}
             percent={metrics?.memory_percent}
@@ -174,7 +174,7 @@ export default function Dashboard() {
             testid="metric-memory"
           />
           <MetricCard
-            label="DISK"
+            label="DISCO"
             value={metrics ? metrics.disk_used_gb.toFixed(0) : "--"}
             unit={`/ ${metrics?.disk_total_gb?.toFixed(0) || "--"} GB`}
             percent={metrics?.disk_percent}
@@ -183,7 +183,7 @@ export default function Dashboard() {
             testid="metric-disk"
           />
           <MetricCard
-            label="PROCESSES"
+            label="PROCESOS"
             value={metrics ? metrics.processes_count : "--"}
             color="#10B981"
             icon={Activity}
@@ -195,10 +195,10 @@ export default function Dashboard() {
           <div className="mt-6 card-tactical p-5" data-testid="cpu-cores">
             <div className="flex items-center justify-between mb-4">
               <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500">
-                CPU CORES · PER-CORE UTILIZATION
+                NÚCLEOS CPU · USO POR NÚCLEO
               </div>
               <div className="text-xs font-mono text-zinc-400">
-                {metrics.cpu_per_core.length} CORES
+                {metrics.cpu_per_core.length} NÚCLEOS
               </div>
             </div>
             <div className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-2">

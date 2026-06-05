@@ -53,7 +53,7 @@ export default function Layout({ children }) {
                 OPTI<span className="text-[#007AFF]">DRIVER</span>
               </div>
               <div className="text-[10px] text-zinc-500 uppercase tracking-[0.3em] font-mono">
-                Performance Control Center
+                Centro de Control de Rendimiento
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function Layout({ children }) {
               className="btn-tactical text-xs flex items-center gap-2"
             >
               <ShieldCheck size={16} weight="bold" />
-              <span className="hidden sm:inline">Restore Point</span>
+              <span className="hidden sm:inline">Punto Restauración</span>
             </button>
           </div>
         </div>
@@ -128,10 +128,13 @@ export default function Layout({ children }) {
 
       <footer className="border-t border-zinc-800 bg-black/60 py-4 px-6">
         <div className="flex items-center justify-between text-xs text-zinc-500 font-mono">
-          <span>OPTIDRIVER v1.0 · LOCAL_MODE</span>
+          <span>OPTIDRIVER v1.0 · MODO_LOCAL</span>
+          <span className="hidden md:inline text-zinc-600">
+            CREADO POR <span className="text-[#007AFF]">@albertomosu</span>
+          </span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-[#10B981] rounded-full pulse-slow"></span>
-            SYSTEM_ONLINE
+            SISTEMA_EN_LINEA
           </span>
         </div>
       </footer>

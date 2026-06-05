@@ -29,7 +29,7 @@ export default function MetricCard({ label, value, unit, percent, color = "#007A
             />
           </div>
           <div className="mt-2 flex justify-between text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-            <span>UTIL</span>
+            <span>USO</span>
             <span style={{ color }}>{p.toFixed(1)}%</span>
           </div>
         </>

@@ -74,7 +74,7 @@ export default function Scheduler() {
     <div className="px-4 md:px-8 py-8 max-w-7xl mx-auto fade-in" data-testid="page-scheduler">
       <div className="mb-8">
         <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#007AFF] mb-3">
-          // AUTO_SCHEDULER
+          // PLANIFICADOR_AUTO
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter leading-none">
           Scheduler <span className="text-[#007AFF]">Automático</span>
@@ -193,7 +193,7 @@ export default function Scheduler() {
           </div>
           {rules.length === 0 ? (
             <div className="font-mono text-xs text-zinc-500 py-8 text-center">
-              // NO_RULES_CONFIGURED
+              // SIN_REGLAS_CONFIGURADAS
             </div>
           ) : (
             <div className="space-y-2 max-h-[400px] overflow-y-auto">
@@ -232,7 +232,7 @@ export default function Scheduler() {
           <span className="text-xs font-mono text-zinc-500">{events.length} EVENTOS</span>
         </div>
         {events.length === 0 ? (
-          <div className="font-mono text-xs text-zinc-500">// NO_EVENTS_YET - ACTIVA_EL_SCHEDULER_PARA_EMPEZAR</div>
+          <div className="font-mono text-xs text-zinc-500">// SIN_EVENTOS_TODAVIA - ACTIVA_EL_SCHEDULER_PARA_EMPEZAR</div>
         ) : (
           <div className="space-y-1 font-mono text-xs max-h-60 overflow-y-auto">
             {events.map((ev, i) => (

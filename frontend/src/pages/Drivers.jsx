@@ -95,18 +95,18 @@ export default function Drivers() {
               <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#007AFF]"></div>
 
               <div className="absolute top-4 left-16 text-[10px] font-mono text-[#007AFF] uppercase tracking-widest">
-                [HARDWARE_SCAN]
+                [ESCANEO_HARDWARE]
               </div>
               <div className="absolute bottom-4 right-16 text-[10px] font-mono text-[#10B981] uppercase tracking-widest flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#10B981] rounded-full pulse-slow"></span>
-                DETECTED
+                DETECTADO
               </div>
 
               {hardware && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="font-heading text-3xl font-black text-white uppercase">
-                      {hardware.motherboard?.manufacturer?.split(' ')[0] || "UNKNOWN"}
+                      {hardware.motherboard?.manufacturer?.split(' ')[0] || "DESCONOCIDO"}
                     </div>
                     <div className="font-mono text-xs text-[#007AFF] uppercase tracking-widest">
                       {hardware.motherboard?.product || "Motherboard"}
@@ -159,7 +159,7 @@ export default function Drivers() {
 
             {loading ? (
               <div className="text-sm font-mono text-zinc-500 py-8 text-center">
-                <span className="cursor-blink">SCANNING_DRIVERS</span>
+                <span className="cursor-blink">ESCANEANDO_DRIVERS</span>
               </div>
             ) : (
               <div className="overflow-x-auto">
@@ -168,7 +168,7 @@ export default function Drivers() {
                     <tr className="border-b border-zinc-800 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
                       <th className="text-left py-3 w-8"></th>
                       <th className="text-left py-3">Driver</th>
-                      <th className="text-left py-3 hidden md:table-cell">Versión</th>
+                      <th className="text-left py-3 hidden md:table-cell">Versión Actual</th>
                       <th className="text-left py-3 hidden md:table-cell">Última</th>
                       <th className="text-left py-3">Estado</th>
                     </tr>
@@ -204,7 +204,7 @@ export default function Drivers() {
                         <td className="py-3">
                           {d.outdated ? (
                             <span className="inline-flex items-center gap-1 px-2 py-1 border border-[#F59E0B] text-[#F59E0B] text-[10px] font-mono uppercase">
-                              <Warning size={10} weight="bold" /> Outdated
+                              <Warning size={10} weight="bold" /> Desactualizado
                             </span>
                           ) : (
                             <span className="inline-flex items-center gap-1 px-2 py-1 border border-[#10B981] text-[#10B981] text-[10px] font-mono uppercase">

@@ -26,7 +26,7 @@ export default function ProfileCard({ profile, title, subtitle, description, ico
             <Icon size={28} weight="bold" />
           </div>
           <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">
-            PROFILE_{profile.toUpperCase()}
+            PERFIL_{profile.toUpperCase()}
           </span>
         </div>
 

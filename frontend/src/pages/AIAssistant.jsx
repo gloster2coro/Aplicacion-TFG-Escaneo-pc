@@ -21,7 +21,7 @@ export default function AIAssistant() {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "system", text: "// OPTIDRIVER AI v1.0 · GPT-5.2 LOADED · READY" },
+    { role: "system", text: "// OPTIDRIVER IA v1.0 · GPT-5.2 CARGADO · LISTO" },
   ]);
   const [input, setInput] = useState("");
   const [sessionId, setSessionId] = useState(null);
@@ -72,7 +72,7 @@ export default function AIAssistant() {
     <div className="px-4 md:px-8 py-8 max-w-7xl mx-auto fade-in" data-testid="page-ai">
       <div className="mb-8">
         <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#10B981] mb-3">
-          // AI_ASSISTANT · GPT-5.2
+          // ASISTENTE_IA · GPT-5.2
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter leading-none">
           Asistente <span className="text-[#10B981]">Táctico</span>
@@ -152,7 +152,7 @@ export default function AIAssistant() {
           <div className="card-tactical p-5 flex flex-col" style={{ height: '500px' }} data-testid="ai-chat">
             <div className="flex items-center gap-2 mb-3 pb-3 border-b border-zinc-800">
               <Robot size={18} className="text-[#10B981]" weight="bold" />
-              <span className="font-heading uppercase tracking-widest text-sm font-bold">TERMINAL CHAT</span>
+              <span className="font-heading uppercase tracking-widest text-sm font-bold">CHAT TERMINAL</span>
               <span className="ml-auto text-[10px] font-mono text-zinc-500">GPT-5.2</span>
             </div>
             <div ref={scrollRef} className="flex-1 overflow-y-auto font-mono text-xs space-y-3 pb-2">
@@ -164,13 +164,13 @@ export default function AIAssistant() {
                   : "text-zinc-500"
                 }>
                   <div className="text-[10px] uppercase tracking-widest opacity-60">
-                    {m.role === "user" ? "> USER" : m.role === "assistant" ? "< AI" : m.role === "error" ? "! ERROR" : "# SYSTEM"}
+                    {m.role === "user" ? "> USUARIO" : m.role === "assistant" ? "< IA" : m.role === "error" ? "! ERROR" : "# SISTEMA"}
                   </div>
                   <div className="whitespace-pre-wrap leading-relaxed mt-0.5">{m.text}</div>
                 </div>
               ))}
               {chatting && (
-                <div className="text-[#10B981] cursor-blink text-[10px]">PROCESSING</div>
+                <div className="text-[#10B981] cursor-blink text-[10px]">PROCESANDO</div>
               )}
             </div>
             <div className="flex gap-2 pt-3 border-t border-zinc-800">
@@ -200,7 +200,7 @@ export default function AIAssistant() {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <Robot size={22} className="text-[#10B981]" weight="bold" />
-                <h2 className="font-heading text-xl font-bold uppercase tracking-wider">OUTPUT ANÁLISIS</h2>
+                <h2 className="font-heading text-xl font-bold uppercase tracking-wider">SALIDA DEL ANÁLISIS</h2>
               </div>
               {analysis?.veredicto && (
                 <span
@@ -218,8 +218,8 @@ export default function AIAssistant() {
 
             {!analysis && !loading && (
               <div className="font-mono text-xs text-zinc-500 space-y-1">
-                <div>// WAITING_FOR_ANALYSIS</div>
-                <div className="cursor-blink">READY</div>
+                <div>// ESPERANDO_ANÁLISIS</div>
+                <div className="cursor-blink">LISTO</div>
               </div>
             )}
 
@@ -238,7 +238,7 @@ export default function AIAssistant() {
                 {analysis.puntuacion_general !== undefined && (
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500">SCORE</span>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500">PUNTUACIÓN</span>
                       <span className="font-heading text-3xl font-black text-[#10B981]">
                         {analysis.puntuacion_general}/100
                       </span>

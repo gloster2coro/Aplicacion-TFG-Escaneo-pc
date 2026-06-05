@@ -40,7 +40,7 @@ export default function RestorePoints() {
     <div className="px-4 md:px-8 py-8 max-w-7xl mx-auto fade-in" data-testid="page-restore">
       <div className="mb-8">
         <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#F59E0B] mb-3">
-          // SYSTEM_RESTORE
+          // RESTAURACION_SISTEMA
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter leading-none">
           Puntos de <span className="text-[#F59E0B]">Restauración</span>
@@ -80,7 +80,7 @@ export default function RestorePoints() {
           </button>
 
           <div className="mt-6 pt-6 border-t border-zinc-800 font-mono text-xs text-zinc-500 space-y-2">
-            <div>// AUTO-RESTORE:</div>
+            <div>// AUTO-RESTAURAR:</div>
             <div>→ Antes de optimización</div>
             <div>→ Antes de actualizar drivers</div>
             <div>// Requiere Windows admin para ser real</div>
@@ -94,12 +94,12 @@ export default function RestorePoints() {
               <ClockCounterClockwise size={20} className="text-[#007AFF]" weight="bold" />
               <h2 className="font-heading text-lg font-bold uppercase tracking-wider">Historial</h2>
             </div>
-            <span className="text-xs font-mono text-zinc-500">{history.length} POINTS</span>
+            <span className="ml-auto text-xs font-mono text-zinc-500">{history.length} PUNTOS</span>
           </div>
 
           {history.length === 0 ? (
             <div className="font-mono text-xs text-zinc-500 py-8 text-center">
-              // NO_RESTORE_POINTS_YET
+              // SIN_PUNTOS_DE_RESTAURACION_TODAVIA
             </div>
           ) : (
             <div className="space-y-2 max-h-[600px] overflow-y-auto">

@@ -57,7 +57,7 @@ export default function Optimizer() {
     <div className="px-4 md:px-8 py-8 max-w-7xl mx-auto fade-in" data-testid="page-optimizer">
       <div className="mb-8">
         <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#007AFF] mb-3">
-          // OPTIMIZATION_ENGINE
+          // MOTOR_OPTIMIZACION
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter leading-none">
           Motor de <span className="text-[#007AFF]">Optimización</span>
@@ -88,7 +88,7 @@ export default function Optimizer() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500 mb-1">
-                  ANALYSIS_RESULT
+                  RESULTADO_DEL_ANÁLISIS
                 </div>
                 <div className="font-heading text-2xl font-bold uppercase">{profile}</div>
                 <p className="text-sm text-zinc-400 mt-2 max-w-2xl">{analysis.description}</p>
@@ -120,12 +120,12 @@ export default function Optimizer() {
                   Procesos Objetivo
                 </h3>
                 <span className="text-xs font-mono text-zinc-500">
-                  {analysis.processes_to_close.length} ITEMS
+                  {analysis.processes_to_close.length} ELEMENTOS
                 </span>
               </div>
               <div className="max-h-80 overflow-y-auto">
                 {analysis.processes_to_close.length === 0 ? (
-                  <div className="text-sm text-zinc-500 font-mono">// NO_TARGET_PROCESSES_RUNNING</div>
+                  <div className="text-sm text-zinc-500 font-mono">// NO_HAY_PROCESOS_OBJETIVO</div>
                 ) : (
                   <table className="w-full text-sm">
                     <thead>
@@ -157,12 +157,12 @@ export default function Optimizer() {
                   Apps de Inicio
                 </h3>
                 <span className="text-xs font-mono text-zinc-500">
-                  {analysis.startup_to_disable.length} ITEMS
+                  {analysis.startup_to_disable.length} ELEMENTOS
                 </span>
               </div>
               <div className="max-h-80 overflow-y-auto">
                 {analysis.startup_to_disable.length === 0 ? (
-                  <div className="text-sm text-zinc-500 font-mono">// NO_STARTUP_TARGETS</div>
+                  <div className="text-sm text-zinc-500 font-mono">// NO_HAY_APPS_DE_INICIO</div>
                 ) : (
                   <div className="space-y-2">
                     {analysis.startup_to_disable.map((s, i) => (
@@ -208,13 +208,13 @@ export default function Optimizer() {
               {result.comparison && (
                 <div className="mt-6" data-testid="comparison-panel">
                   <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#007AFF] mb-3">
-                    COMPARATIVA DE IMPACTO · BEFORE → AFTER
+                    COMPARATIVA DE IMPACTO · ANTES → DESPUÉS
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <ComparisonCell label="CPU" data={result.comparison.cpu_percent} unit="%" testid="comp-cell-cpu" />
-                    <ComparisonCell label="MEMORY" data={result.comparison.memory_percent} unit="%" testid="comp-cell-memory" />
-                    <ComparisonCell label="DISK" data={result.comparison.disk_percent} unit="%" testid="comp-cell-disk" />
-                    <ComparisonCell label="PROCS" data={result.comparison.processes_count} unit="" testid="comp-cell-procs" />
+                    <ComparisonCell label="MEMORIA" data={result.comparison.memory_percent} unit="%" testid="comp-cell-memory" />
+                    <ComparisonCell label="DISCO" data={result.comparison.disk_percent} unit="%" testid="comp-cell-disk" />
+                    <ComparisonCell label="PROCESOS" data={result.comparison.processes_count} unit="" testid="comp-cell-procs" />
                   </div>
                 </div>
               )}
@@ -263,11 +263,11 @@ function ComparisonCell({ label, data, unit, testid }) {
       </div>
       <div className="font-mono text-xs space-y-0.5">
         <div className="flex justify-between">
-          <span className="text-zinc-500">BEFORE</span>
+          <span className="text-zinc-500">ANTES</span>
           <span className="text-zinc-300">{data.before}{unit}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-zinc-500">AFTER</span>
+          <span className="text-zinc-500">DESPUÉS</span>
           <span className="text-zinc-300">{data.after}{unit}</span>
         </div>
         <div className="flex justify-between pt-1 border-t border-zinc-900">
