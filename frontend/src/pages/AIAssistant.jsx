@@ -38,13 +38,15 @@ export default function AIAssistant() {
     setLoading(true);
     setAnalysis(null);
     try {
-      toast.loading("Analizando tu hardware con GPT-5.2...", { id: "ai" });
+      toast.loading("Analizando tu hardware con GPT-5.2... (puede tardar 30-60s)", { id: "ai" });
       const r = await aiAnalyze(profile, budget, sessionId);
       setAnalysis(r.recommendation);
       setSessionId(r.session_id);
       toast.success("Análisis completado", { id: "ai" });
     } catch (e) {
-      toast.error("Error en el análisis IA", { id: "ai" });
+      const detail = e?.response?.data?.detail || e?.message || "error desconocido";
+      toast.error(`Error IA: ${detail}`, { id: "ai", duration: 8000 });
+      setMessages(m => [...m, { role: "error", text: `// ANALYSIS_ERROR: ${detail}` }]);
     } finally {
       setLoading(false);
     }
@@ -62,7 +64,8 @@ export default function AIAssistant() {
       setSessionId(r.session_id);
       setMessages(m => [...m, { role: "assistant", text: r.response }]);
     } catch (e) {
-      setMessages(m => [...m, { role: "error", text: "// ERROR: No se pudo contactar con el asistente" }]);
+      const detail = e?.response?.data?.detail || e?.message || "sin respuesta";
+      setMessages(m => [...m, { role: "error", text: `// ERROR: ${detail}` }]);
     } finally {
       setChatting(false);
     }

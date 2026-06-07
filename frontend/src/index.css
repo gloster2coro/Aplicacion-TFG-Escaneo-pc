@@ -191,6 +191,9 @@ html, body {
 .glow-success {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
+.glow-danger {
+    box-shadow: 0 0 20px rgba(255, 59, 48, 0.4);
+}
 
 /* Progress bar custom */
 .progress-tactical {

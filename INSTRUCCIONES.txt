@@ -1,0 +1,103 @@
+========================================================
+   OPTIDRIVER - GUIA DE INSTALACION Y USO
+   Creado por @albertomosu
+========================================================
+
+
+PASO 1: REQUISITOS PREVIOS (solo la PRIMERA vez)
+--------------------------------------------------------
+Necesitas instalar estos 3 programas en Windows 10/11:
+
+  1) PYTHON 3.12
+     Descarga: https://www.python.org/downloads/release/python-3127/
+     IMPORTANTE: durante la instalacion MARCA la casilla
+                 "Add python.exe to PATH"
+
+  2) NODE.JS LTS
+     Descarga: https://nodejs.org/
+     Durante la instalacion marca tambien "Add to PATH"
+
+  3) MONGODB COMMUNITY SERVER
+     Descarga: https://www.mongodb.com/try/download/community
+     Durante la instalacion MARCA "Install MongoDB as a Service"
+
+
+PASO 2: INSTALACION DEL PROYECTO (solo la PRIMERA vez)
+--------------------------------------------------------
+Doble click sobre el archivo:
+
+     INSTALAR.bat
+
+Esto instala todas las dependencias del proyecto.
+Tarda entre 5 y 10 minutos. Solo hay que hacerlo UNA VEZ.
+
+
+PASO 3: USAR OPTIDRIVER
+--------------------------------------------------------
+Doble click sobre el archivo:
+
+     Optidriver.bat
+
+  - Se abriran 2 ventanas de fondo (backend + frontend)
+  - El navegador se abrira automaticamente
+  - Aparecera el dashboard de Optidriver
+
+Para DETENER la aplicacion:
+  Cierra las 2 ventanas CMD que se abrieron
+  ("Optidriver Backend" y "Optidriver Frontend")
+
+
+MODO ADMINISTRADOR (recomendado)
+--------------------------------------------------------
+Para que las optimizaciones se apliquen REALMENTE al
+sistema Windows, ejecuta Optidriver.bat con:
+
+  - Clic DERECHO sobre Optidriver.bat
+  - Selecciona "Ejecutar como administrador"
+
+Sin permisos de admin, la app funciona en modo SIMULACION:
+te muestra que cambios haria, pero no los aplica
+(es seguro, ideal para una demo).
+
+
+QUE INCLUYE LA APP
+--------------------------------------------------------
+  - Dashboard con metricas en tiempo real (CPU, RAM, Disco)
+  - 3 perfiles de optimizacion: Gaming / Oficina / Optimo
+  - Gestion de drivers con deteccion de hardware
+  - Asistente IA basado en GPT-5.2 (requiere internet)
+  - Scheduler automatico de perfiles
+  - Puntos de restauracion del sistema
+  - Documentacion PDF descargable
+
+
+SOLUCION DE PROBLEMAS
+--------------------------------------------------------
+* "Python no esta en el PATH"
+  -> Reinstala Python marcando "Add to PATH"
+
+* "MongoDB connection refused"
+  -> Abre CMD como admin y ejecuta: net start MongoDB
+
+* La pagina web no muestra metricas
+  -> Comprueba que la ventana "Optidriver Backend" sigue
+     abierta. Si se cerro, vuelve a ejecutar Optidriver.bat
+
+* Errores de compilacion en la ventana del Frontend
+  -> Ejecuta de nuevo INSTALAR.bat
+
+* La IA no responde
+  -> Requiere conexion a internet (usa GPT-5.2)
+  -> El analisis puede tardar 30-90 segundos
+
+
+URLs LOCALES
+--------------------------------------------------------
+  - Aplicacion web:   http://localhost:3000
+  - API del backend:  http://localhost:8001/api
+  - PDF documentacion: http://localhost:8001/api/docs/pdf
+
+
+========================================================
+   Cualquier duda contacta con @albertomosu
+========================================================

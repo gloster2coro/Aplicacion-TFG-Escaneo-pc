@@ -9,7 +9,7 @@ from typing import Dict, Any, Optional
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 
-SYSTEM_PROMPT = """Eres OPTIDRIVER AI, un asistente experto en hardware y optimización de PCs.
+ANALYZE_SYSTEM_PROMPT = """Eres OPTIDRIVER AI, un asistente experto en hardware y optimización de PCs.
 Tu estilo es tactical, preciso, en formato terminal tecnico. Siempre respondes en ESPAÑOL.
 
 Tus capacidades:
@@ -43,6 +43,21 @@ FORMATO OBLIGATORIO de respuesta (JSON válido, sin markdown fences):
 Siempre responde con JSON válido parseable. Sé técnico y directo."""
 
 
+CHAT_SYSTEM_PROMPT = """Eres OPTIDRIVER AI, un asistente experto en hardware y optimización de PCs.
+Respondes SIEMPRE en español, de forma conversacional, clara y directa.
+NO uses formato JSON. NO uses markdown pesado. Habla como un técnico amigo:
+respuestas en texto plano, párrafos cortos, listas con guiones (-) cuando ayude.
+
+Eres experto en:
+- Hardware (CPU, GPU, RAM, SSD, placas base) y precios actuales en €.
+- Compatibilidad con juegos populares y FPS estimados.
+- Recomendaciones de upgrade según presupuesto (bajo <500€, medio 500-1500€, alto >1500€).
+- Tips de optimización de Windows.
+
+Tono: profesional, breve, directo. Máximo 6-8 líneas salvo que el usuario pida detalle.
+Si te piden listas de componentes da modelos concretos con precio aproximado en €."""
+
+
 def _get_api_key() -> str:
     key = os.environ.get("EMERGENT_LLM_KEY")
     if not key:
@@ -62,7 +77,7 @@ async def analyze_hardware_for_profile(
     chat = LlmChat(
         api_key=_get_api_key(),
         session_id=session_id,
-        system_message=SYSTEM_PROMPT,
+        system_message=ANALYZE_SYSTEM_PROMPT,
     ).with_model("openai", "gpt-5.2")
 
     prompt = f"""ANÁLISIS SOLICITADO
@@ -110,7 +125,7 @@ async def chat_with_assistant(
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Free-form chat with the AI assistant."""
-    system = SYSTEM_PROMPT + "\n\nEn chat libre puedes responder en texto normal (sin JSON) manteniendo el tono tactical."
+    system = CHAT_SYSTEM_PROMPT
     if context:
         system += f"\n\nContexto de hardware del usuario:\n{json.dumps(context, ensure_ascii=False)}"
 

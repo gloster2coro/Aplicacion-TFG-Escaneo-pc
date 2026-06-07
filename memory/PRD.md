@@ -43,6 +43,11 @@ Desarrollar **Optidriver**: aplicación profesional para optimizar rendimiento d
 - ✅ Nuevos endpoints: /api/scheduler/* (status, toggle, rules CRUD, events), /api/metrics/* (snapshot, latest-comparison)
 - ✅ Testing agent: 100% backend (24/24), 100% frontend tras fix
 
+## Bugfixes (07-Feb-2026)
+- 🐛➡️✅ **Optimizador no aplicaba cambios reales**: `Optimizer.jsx` enviaba `simulate=true` hardcoded. Añadido toggle MODO_EJECUCIÓN (Simulación/Real) con modal de confirmación. Botón REAL solo activo si backend corre en Windows (nuevo endpoint `/api/system/info` expone `is_windows`/`is_admin`).
+- 🐛➡️✅ **Chat IA devolvía JSON crudo y parecía bloqueado**: separados `ANALYZE_SYSTEM_PROMPT` (JSON) y `CHAT_SYSTEM_PROMPT` (texto conversacional natural en español). Timeout axios extendido a 180s para AI endpoints. Errores reales del backend ahora visibles en UI.
+
+
 ## Notas Técnicas
 - En entorno Linux (preview) los datos Windows-específicos son simulados (drivers, GPU, mobo, servicios)
 - En Windows real con admin: funciones operativas reales (psutil procesos, wmi hardware, pnputil drivers, PowerShell Checkpoint-Computer)

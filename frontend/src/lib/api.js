@@ -9,11 +9,19 @@ export const api = axios.create({
   timeout: 60000,
 });
 
+// AI calls puede tardar más (GPT-5.2 analizando hardware completo)
+const aiApi = axios.create({
+  baseURL: API,
+  headers: { "Content-Type": "application/json" },
+  timeout: 180000,
+});
+
 // Hardware
 export const getHardwareFull = () => api.get("/hardware/full").then(r => r.data);
 export const getHardwareMetrics = () => api.get("/hardware/metrics").then(r => r.data);
 
 // System
+export const getSystemInfo = () => api.get("/system/info").then(r => r.data);
 export const getProcesses = () => api.get("/system/processes").then(r => r.data);
 export const getServices = () => api.get("/system/services").then(r => r.data);
 export const getStartup = () => api.get("/system/startup").then(r => r.data);
@@ -39,9 +47,9 @@ export const getRestoreHistory = () => api.get("/restore/history").then(r => r.d
 
 // AI
 export const aiAnalyze = (profile, budget = "medio", sessionId = null) =>
-  api.post("/ai/analyze", { profile, budget, session_id: sessionId }).then(r => r.data);
+  aiApi.post("/ai/analyze", { profile, budget, session_id: sessionId }).then(r => r.data);
 export const aiChat = (message, sessionId = null, includeHardware = false) =>
-  api.post("/ai/chat", { message, session_id: sessionId, include_hardware: includeHardware }).then(r => r.data);
+  aiApi.post("/ai/chat", { message, session_id: sessionId, include_hardware: includeHardware }).then(r => r.data);
 export const getAISessions = () => api.get("/ai/sessions").then(r => r.data);
 
 export const getDocsPdfUrl = () => `${API}/docs/pdf`;

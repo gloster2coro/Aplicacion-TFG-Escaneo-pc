@@ -5,6 +5,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import platform
 import uuid
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
@@ -64,6 +65,24 @@ class SchedulerToggle(BaseModel):
 @api_router.get("/")
 async def root():
     return {"app": "Optidriver", "version": "1.0.0", "status": "online"}
+
+@api_router.get("/system/info")
+async def system_info():
+    """Devuelve info del entorno para que el frontend sepa si puede aplicar cambios reales."""
+    is_windows = platform.system().lower() == "windows"
+    is_admin = False
+    if is_windows:
+        try:
+            import ctypes
+            is_admin = bool(ctypes.windll.shell32.IsUserAnAdmin())
+        except Exception:
+            is_admin = False
+    return {
+        "platform": platform.system(),
+        "is_windows": is_windows,
+        "is_admin": is_admin,
+        "can_apply_real_changes": is_windows,
+    }
 
 # ---------- Hardware ----------
 @api_router.get("/hardware/full")
